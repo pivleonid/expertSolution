@@ -7,11 +7,11 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
-  QPixmap* pix = new QPixmap;
-  QGraphicsScene* scen = new QGraphicsScene;
-  //pix->load("12.jpg");
-  //scen->addPixmap(*pix);
-  //
+  pix = new QPixmap;
+  scen = new QGraphicsScene;
+  pix->load("12.jpg");
+  scen->addPixmap(*pix);
+
 
 
   ui->graphicsView->setScene(scen);
@@ -221,6 +221,10 @@ void MainWindow::loadTest(){
 
         }
     }
+
   int i;
   i++;
+  scen->clear();
+  scen->addText(str);
+
 }

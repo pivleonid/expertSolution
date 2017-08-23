@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <QGraphicsScene>
 #include <QFile>
 #include <QDebug>
 
@@ -15,6 +16,8 @@ class MainWindow : public QMainWindow
   Q_OBJECT
 
 public:
+  QPixmap* pix;
+  QGraphicsScene* scen;
   QList <QPushButton *> list;
   //все буквы, а после buttonSaveSlot() буквы которые не распознали эксперты
   //заменены на "_"
