@@ -9,8 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->setupUi(this);
   QPixmap* pix = new QPixmap;
   QGraphicsScene* scen = new QGraphicsScene;
-  pix->load("12.jpg");
-  scen->addPixmap(*pix);
+  //pix->load("12.jpg");
+  //scen->addPixmap(*pix);
+  //
+
+
   ui->graphicsView->setScene(scen);
 
   QList <QPushButton *> m_list;
@@ -32,13 +35,15 @@ expertTemplate << "а" << "б"<< "в" << "г"<< "д" << "е"<< "ж" \
 
 
 
-  connect(ui->Expert1, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
-  connect(ui->Expert2, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
-  connect(ui->Expert3, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
-  connect(ui->Expert4, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
-  connect(ui->Expert5, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
+connect(ui->Expert1, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
+connect(ui->Expert2, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
+connect(ui->Expert3, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
+connect(ui->Expert4, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
+connect(ui->Expert5, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
 
-   connect(ui->buttonSave, SIGNAL(clicked(bool)), this, SLOT(buttonSaveSlot()));
+connect(ui->buttonSave, SIGNAL(clicked(bool)), this, SLOT(buttonSaveSlot()));
+
+connect(ui->loadTest, SIGNAL(clicked(bool)), this, SLOT(loadTest()));
 
 }
 
@@ -121,43 +126,101 @@ void MainWindow::expertSolution(){
 
 void MainWindow::buttonSaveSlot(){
 
+  switch (flagExpert_) {
+    case flag1:
+      foreach (auto w, expertTemplate) {
+          int i = expert1.indexOf(w);
+          if(i < 0)
+            expert_true << w;
+        }
+      break;
+    case flag2:
+      foreach (auto w, expertTemplate) {
+          int i = expert2.indexOf(w);
+          if(i < 0)
+            expert_true << w;
+        }
+      break;
+    case flag3:
+      foreach (auto w, expertTemplate) {
+          int i = expert3.indexOf(w);
+          if(i < 0)
+            expert_true << w;
+        }
+      break;
+    case flag4:
+      foreach (auto w, expertTemplate) {
+          int i = expert4.indexOf(w);
+          if(i < 0)
+            expert_true << w;
+        }      break;
+    case flag5:
+      foreach (auto w, expertTemplate) {
+          int i = expert5.indexOf(w);
+          if(i < 0)
+            expert_true << w;
+        }      break;
+    default:
+      return;
 
-  foreach (auto w, expertTemplate) {
-      int i = expert1.indexOf(w);
-      if(i < 0)
-        expert_true << w;
     }
-  foreach (auto w, expertTemplate) {
-      int i = expert2.indexOf(w);
-      if(i < 0)
-        expert_true << w;
-    }
-  foreach (auto w, expertTemplate) {
-      int i = expert3.indexOf(w);
-      if(i < 0)
-        expert_true << w;
-    }
-  foreach (auto w, expertTemplate) {
-      int i = expert4.indexOf(w);
-      if(i < 0)
-        expert_true << w;
-    }
-  foreach (auto w, expertTemplate) {
-      int i = expert5.indexOf(w);
-      if(i < 0)
-        expert_true << w;
-    }
-
   expert_true = expert_true.toSet().toList();
 
-  for(int i = 0; i< 30; i++){
-      int j = expert_true.indexOf(expertTemplate[i]);
-      if(j < 0)
-        expertTemplate[i] = "_";
-    }
+//  foreach (auto i, expertTemplate) {
+//      int j = expert_true.indexOf(i);
+//      if(j < 0){
+//          int k = expertTemplate.indexOf(i);
+//          expertTemplate[k] = "_";
+//        }
+//    }
+  //  for(int i = 0; i< 30; i++){
+  //      int j = expert_true.indexOf(expertTemplate[i]);
+  //      if(j < 0)
+  //        expertTemplate[i] = "_";
+  //    }
 
 
 
   int k;
-   k++;
+  k++;
+}
+
+
+
+void MainWindow::loadTest(){
+  int number = ui->comboBox->currentText().toInt();
+  QString  str;
+  QFile file("Образцы.txt");
+  if(file.open(QIODevice::ReadOnly |QIODevice::Text))
+    {
+      int count = 1;
+      while (!file.atEnd())
+        {
+          QByteArray line = file.readLine();
+          str = line.data();// <- прочитанная строка
+          if(count >= number)
+            continue;
+          count++;
+        }
+
+    }
+  else qDebug()<< "don't open file";
+  int contStr = str.count();
+
+  for(int j = 0; j < contStr; j++){
+
+      //foreach (auto i, expert_true) {
+      for(int i = 0; i < expert_true.count(); i++){
+
+          if(str[j] == expert_true[i]){ // i[0] QChar expert_true
+           break;
+            }
+           if(i == expert_true.count()-1){
+              str[j] = 95;
+            }
+
+        }
+    }
+  int i;
+  i++;
 }

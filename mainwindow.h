@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <QFile>
 #include <QDebug>
 
 namespace Ui {
@@ -15,7 +16,9 @@ class MainWindow : public QMainWindow
 
 public:
   QList <QPushButton *> list;
-  QStringList expertTemplate; //все буквы
+  //все буквы, а после buttonSaveSlot() буквы которые не распознали эксперты
+  //заменены на "_"
+  QStringList expertTemplate;
   //буквы не найденные экспертом
   QStringList expert1;
   QStringList expert2;
@@ -30,6 +33,7 @@ public slots:
   void expertSolution(void);
   void expertButton();
   void buttonSaveSlot();
+  void loadTest();
 private:
   Ui::MainWindow *ui;
   enum flagExpert {flag1, flag2, flag3, flag4, flag5}flagExpert_;
