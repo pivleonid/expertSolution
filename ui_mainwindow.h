@@ -39,17 +39,17 @@ public:
     QGridLayout *gridLayout_5;
     QGridLayout *gridLayout_4;
     QGridLayout *gridLayout_2;
-    QPushButton *openImage;
-    QCheckBox *Expert1;
-    QCheckBox *Expert2;
     QCheckBox *Expert3;
-    QCheckBox *Expert4;
-    QCheckBox *Expert5;
-    QPushButton *loadTest;
     QGridLayout *gridLayout;
     QComboBox *comboBox;
     QSpacerItem *horizontalSpacer_3;
+    QCheckBox *Expert5;
     QSpacerItem *verticalSpacer;
+    QPushButton *loadTest;
+    QCheckBox *Expert4;
+    QPushButton *openImage;
+    QCheckBox *Expert1;
+    QCheckBox *Expert2;
     QSpacerItem *horizontalSpacer;
     QGraphicsView *graphicsView;
     QSpacerItem *verticalSpacer_3;
@@ -100,7 +100,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1674, 888);
+        MainWindow->resize(1632, 918);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_6 = new QGridLayout(centralWidget);
@@ -117,40 +117,10 @@ public:
         gridLayout_2->setSpacing(6);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setSizeConstraint(QLayout::SetFixedSize);
-        openImage = new QPushButton(centralWidget);
-        openImage->setObjectName(QStringLiteral("openImage"));
-
-        gridLayout_2->addWidget(openImage, 0, 0, 1, 1);
-
-        Expert1 = new QCheckBox(centralWidget);
-        Expert1->setObjectName(QStringLiteral("Expert1"));
-
-        gridLayout_2->addWidget(Expert1, 1, 0, 1, 1);
-
-        Expert2 = new QCheckBox(centralWidget);
-        Expert2->setObjectName(QStringLiteral("Expert2"));
-
-        gridLayout_2->addWidget(Expert2, 2, 0, 1, 1);
-
         Expert3 = new QCheckBox(centralWidget);
         Expert3->setObjectName(QStringLiteral("Expert3"));
 
         gridLayout_2->addWidget(Expert3, 3, 0, 1, 1);
-
-        Expert4 = new QCheckBox(centralWidget);
-        Expert4->setObjectName(QStringLiteral("Expert4"));
-
-        gridLayout_2->addWidget(Expert4, 4, 0, 1, 1);
-
-        Expert5 = new QCheckBox(centralWidget);
-        Expert5->setObjectName(QStringLiteral("Expert5"));
-
-        gridLayout_2->addWidget(Expert5, 5, 0, 1, 1);
-
-        loadTest = new QPushButton(centralWidget);
-        loadTest->setObjectName(QStringLiteral("loadTest"));
-
-        gridLayout_2->addWidget(loadTest, 6, 0, 1, 1);
 
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
@@ -167,9 +137,40 @@ public:
 
         gridLayout_2->addLayout(gridLayout, 7, 0, 1, 1);
 
+        Expert5 = new QCheckBox(centralWidget);
+        Expert5->setObjectName(QStringLiteral("Expert5"));
+
+        gridLayout_2->addWidget(Expert5, 5, 0, 1, 1);
+
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         gridLayout_2->addItem(verticalSpacer, 8, 0, 1, 1);
+
+        loadTest = new QPushButton(centralWidget);
+        loadTest->setObjectName(QStringLiteral("loadTest"));
+
+        gridLayout_2->addWidget(loadTest, 6, 0, 1, 1);
+
+        Expert4 = new QCheckBox(centralWidget);
+        Expert4->setObjectName(QStringLiteral("Expert4"));
+
+        gridLayout_2->addWidget(Expert4, 4, 0, 1, 1);
+
+        openImage = new QPushButton(centralWidget);
+        openImage->setObjectName(QStringLiteral("openImage"));
+        openImage->setFocusPolicy(Qt::WheelFocus);
+
+        gridLayout_2->addWidget(openImage, 0, 0, 1, 1);
+
+        Expert1 = new QCheckBox(centralWidget);
+        Expert1->setObjectName(QStringLiteral("Expert1"));
+
+        gridLayout_2->addWidget(Expert1, 1, 0, 1, 1);
+
+        Expert2 = new QCheckBox(centralWidget);
+        Expert2->setObjectName(QStringLiteral("Expert2"));
+
+        gridLayout_2->addWidget(Expert2, 2, 0, 1, 1);
 
 
         gridLayout_4->addLayout(gridLayout_2, 0, 0, 1, 1);
@@ -197,6 +198,7 @@ public:
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setSizeConstraint(QLayout::SetNoConstraint);
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setLayoutDirection(Qt::LeftToRight);
@@ -223,9 +225,11 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setSizeConstraint(QLayout::SetNoConstraint);
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        horizontalLayout_2->setSizeConstraint(QLayout::SetNoConstraint);
         button1 = new QPushButton(centralWidget);
         button1->setObjectName(QStringLiteral("button1"));
 
@@ -311,6 +315,7 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setSizeConstraint(QLayout::SetNoConstraint);
         button16 = new QPushButton(centralWidget);
         button16->setObjectName(QStringLiteral("button16"));
 
@@ -401,7 +406,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1674, 26));
+        menuBar->setGeometry(QRect(0, 0, 1632, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -421,13 +426,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        openImage->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214 \320\270\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265", Q_NULLPTR));
-        Expert1->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 1", Q_NULLPTR));
-        Expert2->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 2", Q_NULLPTR));
         Expert3->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 3", Q_NULLPTR));
-        Expert4->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 4", Q_NULLPTR));
-        Expert5->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 5", Q_NULLPTR));
-        loadTest->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\202\320\265\321\201\321\202", Q_NULLPTR));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "1", Q_NULLPTR)
@@ -471,6 +470,14 @@ public:
          << QApplication::translate("MainWindow", "39", Q_NULLPTR)
          << QApplication::translate("MainWindow", "40", Q_NULLPTR)
         );
+        Expert5->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 5", Q_NULLPTR));
+        loadTest->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214\n"
+" \321\202\320\265\321\201\321\202", Q_NULLPTR));
+        Expert4->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 4", Q_NULLPTR));
+        openImage->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214\n"
+" \320\270\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265", Q_NULLPTR));
+        Expert1->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 1", Q_NULLPTR));
+        Expert2->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 2", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\320\277\320\276\320\267\320\275\320\260\320\275\320\275\321\213\320\265\n"
 "    \321\201\320\270\320\274\320\262\320\276\320\273\321\213", Q_NULLPTR));
         buttonSave->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", Q_NULLPTR));

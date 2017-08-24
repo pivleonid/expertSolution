@@ -9,12 +9,14 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->setupUi(this);
   pix = new QPixmap;
   scen = new QGraphicsScene;
+
   pix->load("12.jpg");
   scen->addPixmap(*pix);
 
 
 
   ui->graphicsView->setScene(scen);
+
 
   QList <QPushButton *> m_list;
    m_list = findChildren<QPushButton *>();
@@ -86,7 +88,7 @@ void MainWindow::expertSolution(){
   QObject* obj = QObject::sender();
   QCheckBox* chBox = dynamic_cast<QCheckBox*> (obj);
   chBox->setEnabled(false);
-
+  ui->buttonSave->setEnabled(true);
 
 
   if(chBox == ui->Expert1){
@@ -118,7 +120,7 @@ void MainWindow::expertSolution(){
     flagExpert_ = flag5;
     foreach (auto i, list)
         i->setEnabled(true);
-    ui->buttonSave->setEnabled(true);
+
     }
 
 }
@@ -198,8 +200,8 @@ void MainWindow::loadTest(){
         {
           QByteArray line = file.readLine();
           str = line.data();// <- прочитанная строка
-          if(count >= number)
-            continue;
+          if(count == number)
+            break;
           count++;
         }
 
@@ -211,12 +213,13 @@ void MainWindow::loadTest(){
 
       //foreach (auto i, expert_true) {
       for(int i = 0; i < expert_true.count(); i++){
-
+          if(str[j] == ' ' || str[j] == ','|| str[j] == '.'
+             || str[j] == ';'|| str[j] == ':'  ) break;
           if(str[j] == expert_true[i]){ // i[0] QChar expert_true
            break;
             }
            if(i == expert_true.count()-1){
-              str[j] = 95;
+              str[j] = '_';
             }
 
         }
@@ -225,6 +228,19 @@ void MainWindow::loadTest(){
   int i;
   i++;
   scen->clear();
-  scen->addText(str);
+  double contStr_d = (double)contStr/100;
+  contStr_d = ceil(contStr_d);
+  int strCont = (int)contStr_d;
+  QString string[strCont];
+  QString stringText;
+  for(int i = 0; i < strCont; i++){
+    string[i] = str.mid(i * 100, 100);
+    string[i] = string[i] + "\n";
+    stringText = stringText + string[i];
+    }
+
+  int k;
+  k++;
+  scen->addText(stringText);
 
 }

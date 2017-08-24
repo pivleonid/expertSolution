@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1674</width>
-    <height>888</height>
+    <width>1632</width>
+    <height>918</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,52 +24,10 @@
           <property name="sizeConstraint">
            <enum>QLayout::SetFixedSize</enum>
           </property>
-          <item row="0" column="0">
-           <widget class="QPushButton" name="openImage">
-            <property name="text">
-             <string>Открыть изображение</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QCheckBox" name="Expert1">
-            <property name="text">
-             <string>Эксперт 1</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QCheckBox" name="Expert2">
-            <property name="text">
-             <string>Эксперт 2</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="0">
            <widget class="QCheckBox" name="Expert3">
             <property name="text">
              <string>Эксперт 3</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QCheckBox" name="Expert4">
-            <property name="text">
-             <string>Эксперт 4</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QCheckBox" name="Expert5">
-            <property name="text">
-             <string>Эксперт 5</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QPushButton" name="loadTest">
-            <property name="text">
-             <string>Загрузить тест</string>
             </property>
            </widget>
           </item>
@@ -297,6 +255,13 @@
             </item>
            </layout>
           </item>
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="Expert5">
+            <property name="text">
+             <string>Эксперт 5</string>
+            </property>
+           </widget>
+          </item>
           <item row="8" column="0">
            <spacer name="verticalSpacer">
             <property name="orientation">
@@ -309,6 +274,46 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="6" column="0">
+           <widget class="QPushButton" name="loadTest">
+            <property name="text">
+             <string>Загрузить
+ тест</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="Expert4">
+            <property name="text">
+             <string>Эксперт 4</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="openImage">
+            <property name="focusPolicy">
+             <enum>Qt::WheelFocus</enum>
+            </property>
+            <property name="text">
+             <string>Открыть
+ изображение</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="Expert1">
+            <property name="text">
+             <string>Эксперт 1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="Expert2">
+            <property name="text">
+             <string>Эксперт 2</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -356,6 +361,9 @@
         </property>
         <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
           <item>
            <widget class="QLabel" name="label">
             <property name="layoutDirection">
@@ -410,8 +418,14 @@
         </item>
         <item row="0" column="2">
          <layout class="QVBoxLayout" name="verticalLayout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetNoConstraint</enum>
+            </property>
             <item>
              <widget class="QPushButton" name="button1">
               <property name="text">
@@ -536,6 +550,9 @@
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetNoConstraint</enum>
+            </property>
             <item>
              <widget class="QPushButton" name="button16">
               <property name="text">
@@ -656,7 +673,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1674</width>
+     <width>1632</width>
      <height>26</height>
     </rect>
    </property>
