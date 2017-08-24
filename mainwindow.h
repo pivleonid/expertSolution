@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QPushButton>
+#include <QLineEdit>
 #include <QGraphicsScene>
 #include <QFile>
 #include <QDebug>
@@ -18,7 +18,7 @@ class MainWindow : public QMainWindow
 public:
   QPixmap* pix;
   QGraphicsScene* scen;
-  QList <QPushButton *> list;
+  QList <QLineEdit *> lableList;
   //все буквы, а после buttonSaveSlot() буквы которые не распознали эксперты
   //заменены на "_"
   QStringList expertTemplate;
@@ -37,7 +37,10 @@ public slots:
   void expertButton();
   void buttonSaveSlot();
   void loadTest();
+  //показать фрагмент оригинального текста
+  void textFragment();
 private:
+  void expertAnaliz();
   Ui::MainWindow *ui;
   enum flagExpert {flag1, flag2, flag3, flag4, flag5}flagExpert_;
 };
