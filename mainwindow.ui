@@ -317,8 +317,17 @@
           </item>
           <item row="1" column="0">
            <widget class="QCheckBox" name="Expert1">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="text">
              <string>Эксперт 1</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -436,7 +445,7 @@
           <item row="0" column="0">
            <widget class="QLineEdit" name="lineEdit">
             <property name="text">
-             <string>ф</string>
+             <string/>
             </property>
             <property name="frame">
              <bool>true</bool>
@@ -449,49 +458,49 @@
           <item row="0" column="1">
            <widget class="QLineEdit" name="lineEdit_2">
             <property name="text">
-             <string>ы</string>
+             <string/>
             </property>
            </widget>
           </item>
           <item row="0" column="2">
            <widget class="QLineEdit" name="lineEdit_3">
             <property name="text">
-             <string>в</string>
+             <string/>
             </property>
            </widget>
           </item>
           <item row="0" column="3">
            <widget class="QLineEdit" name="lineEdit_4">
             <property name="text">
-             <string>а</string>
+             <string/>
             </property>
            </widget>
           </item>
           <item row="0" column="4">
            <widget class="QLineEdit" name="lineEdit_5">
             <property name="text">
-             <string>о</string>
+             <string/>
             </property>
            </widget>
           </item>
           <item row="0" column="5">
            <widget class="QLineEdit" name="lineEdit_6">
             <property name="text">
-             <string>л</string>
+             <string/>
             </property>
            </widget>
           </item>
           <item row="0" column="6">
            <widget class="QLineEdit" name="lineEdit_7">
             <property name="text">
-             <string>д</string>
+             <string/>
             </property>
            </widget>
           </item>
           <item row="0" column="7">
            <widget class="QLineEdit" name="lineEdit_8">
             <property name="text">
-             <string>ж</string>
+             <string/>
             </property>
            </widget>
           </item>

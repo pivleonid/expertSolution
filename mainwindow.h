@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QGraphicsScene>
 #include <QFile>
+#include <QFileDialog>
 #include <QDebug>
 
 namespace Ui {
@@ -37,6 +38,7 @@ public slots:
   void expertButton();
   void buttonSaveSlot();
   void loadTest();
+  void openImage();
   //показать фрагмент оригинального текста
   void textFragment();
 private:

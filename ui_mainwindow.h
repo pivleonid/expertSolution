@@ -170,6 +170,9 @@ public:
 
         Expert1 = new QCheckBox(centralWidget);
         Expert1->setObjectName(QStringLiteral("Expert1"));
+        Expert1->setEnabled(true);
+        Expert1->setCheckable(true);
+        Expert1->setChecked(false);
 
         gridLayout_2->addWidget(Expert1, 1, 0, 1, 1);
 
@@ -513,14 +516,14 @@ public:
         label->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\320\277\320\276\320\267\320\275\320\260\320\275\320\275\321\213\320\265\n"
 "    \321\201\320\270\320\274\320\262\320\276\320\273\321\213", Q_NULLPTR));
         buttonSave->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", Q_NULLPTR));
-        lineEdit->setText(QApplication::translate("MainWindow", "\321\204", Q_NULLPTR));
-        lineEdit_2->setText(QApplication::translate("MainWindow", "\321\213", Q_NULLPTR));
-        lineEdit_3->setText(QApplication::translate("MainWindow", "\320\262", Q_NULLPTR));
-        lineEdit_4->setText(QApplication::translate("MainWindow", "\320\260", Q_NULLPTR));
-        lineEdit_5->setText(QApplication::translate("MainWindow", "\320\276", Q_NULLPTR));
-        lineEdit_6->setText(QApplication::translate("MainWindow", "\320\273", Q_NULLPTR));
-        lineEdit_7->setText(QApplication::translate("MainWindow", "\320\264", Q_NULLPTR));
-        lineEdit_8->setText(QApplication::translate("MainWindow", "\320\266", Q_NULLPTR));
+        lineEdit->setText(QString());
+        lineEdit_2->setText(QString());
+        lineEdit_3->setText(QString());
+        lineEdit_4->setText(QString());
+        lineEdit_5->setText(QString());
+        lineEdit_6->setText(QString());
+        lineEdit_7->setText(QString());
+        lineEdit_8->setText(QString());
     } // retranslateUi
 
 };
