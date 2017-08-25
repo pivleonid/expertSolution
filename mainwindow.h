@@ -43,6 +43,8 @@ public slots:
   void textFragment();
 private:
   void expertAnaliz();
+  //ограничитель ввода текста
+  void textEditChange();
   Ui::MainWindow *ui;
   enum flagExpert {flag1, flag2, flag3, flag4, flag5}flagExpert_;
 };

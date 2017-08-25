@@ -12,36 +12,42 @@ MainWindow::MainWindow(QWidget *parent) :
   scen = new QGraphicsScene;
 
   QList <QLineEdit *> m_list;
-   m_list = findChildren<QLineEdit *>();
+  m_list = findChildren<QLineEdit *>();
+
+
+  QRegExp rx( "[а-я]" );
+  QValidator *validator = new QRegExpValidator(rx, this);
 
   foreach (auto i, m_list) {
       i->setEnabled(false);
       lableList << i;
+      i->setValidator(validator);
+      i->setAlignment(Qt::AlignHCenter);
     }
 
-expertTemplate << "а" << "б"<< "в" << "г"<< "д" << "е"<< "ж" \
-       << "з"<< "и" << "к"<< "л" << "м"<<  "н" << "о"\
-       << "п" << "р"<< "с" << "т"<< "у" << "ф"<< "х" \
-       << "ц"<< "ч" << "ш"<< "щ" << "ы"<< "ь" << "э"<< "ю" << "я";
+  expertTemplate << "а" << "б"<< "в" << "г"<< "д" << "е"<< "ж" \
+                 << "з"<< "и" << "к"<< "л" << "м"<<  "н" << "о"\
+                 << "п" << "р"<< "с" << "т"<< "у" << "ф"<< "х" \
+                 << "ц"<< "ч" << "ш"<< "щ" << "ы"<< "ь" << "э"<< "ю" << "я";
+
+  connect(ui->Expert1, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
+  connect(ui->Expert2, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
+  connect(ui->Expert3, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
+  connect(ui->Expert4, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
+  connect(ui->Expert5, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
+
+  connect(ui->buttonSave, SIGNAL(clicked(bool)), this, SLOT(buttonSaveSlot()));
+
+  connect(ui->loadTest, SIGNAL(clicked(bool)), this, SLOT(loadTest()));
+
+  connect (ui->originalButton, SIGNAL(clicked(bool)),this, SLOT(textFragment()));
+  connect(ui->openImage, SIGNAL(clicked(bool)),this,SLOT(openImage()));
 
 
 
-connect(ui->Expert1, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
-connect(ui->Expert2, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
-connect(ui->Expert3, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
-connect(ui->Expert4, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
-connect(ui->Expert5, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
-
-connect(ui->buttonSave, SIGNAL(clicked(bool)), this, SLOT(buttonSaveSlot()));
-
-connect(ui->loadTest, SIGNAL(clicked(bool)), this, SLOT(loadTest()));
-
-connect (ui->originalButton, SIGNAL(clicked(bool)),this, SLOT(textFragment()));
-connect(ui->openImage, SIGNAL(clicked(bool)),this,SLOT(openImage()));
-
-ui->openImage->setToolTip("Открытие изображения чревато проведения нового эксперимента");
-ui->loadTest->setEnabled(false);
-ui->graphicsView->setScene(scen);
+  ui->openImage->setToolTip("Открытие изображения чревато проведения нового эксперимента");
+  ui->loadTest->setEnabled(false);
+  ui->graphicsView->setScene(scen);
 }
 
 MainWindow::~MainWindow()
@@ -52,37 +58,27 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::expertButton(){
-    }
+}
 
 void MainWindow::expertSolution(){
-
-
-
   QObject* obj = QObject::sender();
   QCheckBox* chBox = dynamic_cast<QCheckBox*> (obj);
   chBox->setEnabled(false);
   ui->buttonSave->setEnabled(true);
-
   foreach (auto i, lableList) {
       i->setEnabled(true);
       i->clear();
     }
   ui->lineEdit->setFocus();
-
   if(chBox == ui->Expert1) flagExpert_ = flag1;
   if(chBox == ui->Expert2) flagExpert_ = flag2;
   if(chBox == ui->Expert3) flagExpert_ = flag3;
   if(chBox == ui->Expert4) flagExpert_ = flag4;
   if(chBox == ui->Expert5) flagExpert_ = flag5;
-
-
 }
 
-
 void MainWindow::buttonSaveSlot(){
-//тут надо перебрать все клавишы
-
-  //list
+  //тут надо перебрать все клавишы
   ui->loadTest->setEnabled(true);
   switch (flagExpert_) {
     case flag1:
@@ -141,7 +137,7 @@ foreach (auto expertTemplate_i, expertTemplate) {
 QMap<QString, int>::iterator symbols_i;
 for (symbols_i = symbols.begin(); symbols_i != symbols.end(); ) {
     int k = symbols_i.value();
-    if(k < 3){
+    if(k < 2){
         //symbols_i следующий элемент
         symbols_i = symbols.erase(symbols_i);
       }
@@ -174,6 +170,7 @@ void MainWindow::loadTest(){
     }
   else qDebug()<< "don't open file";
   int contStr = str.count();
+  //удаление и замена не нужных символов
   str.remove(",");
   str.remove(".");
   str.remove(";");
@@ -181,10 +178,7 @@ void MainWindow::loadTest(){
   str.replace(" ", "_");
   for(int j = 0; j < contStr; j++){
       for(int i = 0; i < expert_true.count(); i++){
-          if(str[j] == ' '){
-            str[j] = '_';
-            break;
-            }
+
           if(str[j] == expert_true[i]){ // i[0] QChar expert_true
               break;
             }
@@ -194,7 +188,7 @@ void MainWindow::loadTest(){
 
         }
     }
-
+// отображение текста
   scen->clear();
   double contStr_d = (double)contStr/100;
   contStr_d = ceil(contStr_d);
@@ -285,3 +279,5 @@ void MainWindow::openImage(){
   ui->buttonSave->setEnabled(true);
   ui->loadTest->setEnabled(false);
 }
+
+
