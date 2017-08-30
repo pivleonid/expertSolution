@@ -34,27 +34,27 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QGridLayout *gridLayout_8;
     QGridLayout *gridLayout_7;
+    QGridLayout *gridLayout_6;
     QGridLayout *gridLayout_4;
     QGridLayout *gridLayout_2;
+    QSpacerItem *verticalSpacer;
     QCheckBox *Expert3;
     QGridLayout *gridLayout;
     QComboBox *comboBox;
     QSpacerItem *horizontalSpacer_3;
     QCheckBox *Expert5;
-    QSpacerItem *verticalSpacer;
     QPushButton *loadTest;
     QCheckBox *Expert4;
-    QPushButton *originalButton;
     QPushButton *openImage;
     QCheckBox *Expert1;
     QCheckBox *Expert2;
     QLabel *label_2;
-    QSpacerItem *horizontalSpacer;
+    QPushButton *originalButton;
+    QSpacerItem *verticalSpacer_4;
     QGraphicsView *graphicsView;
+    QSpacerItem *horizontalSpacer;
     QSpacerItem *verticalSpacer_3;
-    QGridLayout *gridLayout_6;
     QGridLayout *gridLayout_5;
     QLabel *label;
     QSpacerItem *verticalSpacer_2;
@@ -100,16 +100,16 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->setEnabled(true);
-        MainWindow->resize(1433, 899);
+        MainWindow->resize(1449, 896);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        gridLayout_8 = new QGridLayout(centralWidget);
-        gridLayout_8->setSpacing(6);
-        gridLayout_8->setContentsMargins(11, 11, 11, 11);
-        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
-        gridLayout_7 = new QGridLayout();
+        gridLayout_7 = new QGridLayout(centralWidget);
         gridLayout_7->setSpacing(6);
+        gridLayout_7->setContentsMargins(11, 11, 11, 11);
         gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
+        gridLayout_6 = new QGridLayout();
+        gridLayout_6->setSpacing(6);
+        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
         gridLayout_4 = new QGridLayout();
         gridLayout_4->setSpacing(6);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
@@ -118,6 +118,10 @@ public:
         gridLayout_2->setSpacing(6);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setSizeConstraint(QLayout::SetFixedSize);
+        verticalSpacer = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        gridLayout_2->addItem(verticalSpacer, 12, 0, 1, 1);
+
         Expert3 = new QCheckBox(centralWidget);
         Expert3->setObjectName(QStringLiteral("Expert3"));
 
@@ -143,10 +147,6 @@ public:
 
         gridLayout_2->addWidget(Expert5, 5, 0, 1, 1);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_2->addItem(verticalSpacer, 10, 0, 1, 1);
-
         loadTest = new QPushButton(centralWidget);
         loadTest->setObjectName(QStringLiteral("loadTest"));
 
@@ -156,11 +156,6 @@ public:
         Expert4->setObjectName(QStringLiteral("Expert4"));
 
         gridLayout_2->addWidget(Expert4, 4, 0, 1, 1);
-
-        originalButton = new QPushButton(centralWidget);
-        originalButton->setObjectName(QStringLiteral("originalButton"));
-
-        gridLayout_2->addWidget(originalButton, 7, 0, 1, 1);
 
         openImage = new QPushButton(centralWidget);
         openImage->setObjectName(QStringLiteral("openImage"));
@@ -186,28 +181,37 @@ public:
 
         gridLayout_2->addWidget(label_2, 8, 0, 1, 1);
 
+        originalButton = new QPushButton(centralWidget);
+        originalButton->setObjectName(QStringLiteral("originalButton"));
+
+        gridLayout_2->addWidget(originalButton, 11, 0, 1, 1);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_2->addItem(verticalSpacer_4, 10, 0, 1, 1);
+
 
         gridLayout_4->addLayout(gridLayout_2, 0, 0, 1, 1);
+
+        graphicsView = new QGraphicsView(centralWidget);
+        graphicsView->setObjectName(QStringLiteral("graphicsView"));
+        graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        graphicsView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
+
+        gridLayout_4->addWidget(graphicsView, 0, 2, 1, 1);
 
         horizontalSpacer = new QSpacerItem(13, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         gridLayout_4->addItem(horizontalSpacer, 0, 1, 1, 1);
 
-        graphicsView = new QGraphicsView(centralWidget);
-        graphicsView->setObjectName(QStringLiteral("graphicsView"));
 
-        gridLayout_4->addWidget(graphicsView, 0, 2, 1, 1);
-
-
-        gridLayout_7->addLayout(gridLayout_4, 0, 0, 1, 1);
+        gridLayout_6->addLayout(gridLayout_4, 0, 0, 1, 2);
 
         verticalSpacer_3 = new QSpacerItem(20, 13, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
-        gridLayout_7->addItem(verticalSpacer_3, 1, 0, 1, 1);
+        gridLayout_6->addItem(verticalSpacer_3, 1, 0, 1, 1);
 
-        gridLayout_6 = new QGridLayout();
-        gridLayout_6->setSpacing(6);
-        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
         gridLayout_5 = new QGridLayout();
         gridLayout_5->setSpacing(6);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
@@ -227,12 +231,12 @@ public:
 
         gridLayout_5->addWidget(buttonSave, 2, 0, 1, 1);
 
+        horizontalSpacer_2 = new QSpacerItem(24, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        gridLayout_6->addLayout(gridLayout_5, 0, 0, 1, 1);
+        gridLayout_5->addItem(horizontalSpacer_2, 1, 1, 1, 1);
 
-        horizontalSpacer_2 = new QSpacerItem(48, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_6->addItem(horizontalSpacer_2, 0, 1, 1, 1);
+        gridLayout_6->addLayout(gridLayout_5, 2, 0, 1, 1);
 
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setSpacing(6);
@@ -390,18 +394,15 @@ public:
         gridLayout_3->addWidget(lineEdit_22, 2, 9, 1, 1);
 
 
-        gridLayout_6->addLayout(gridLayout_3, 0, 2, 1, 1);
+        gridLayout_6->addLayout(gridLayout_3, 2, 1, 1, 1);
 
 
-        gridLayout_7->addLayout(gridLayout_6, 2, 0, 1, 1);
-
-
-        gridLayout_8->addLayout(gridLayout_7, 0, 0, 1, 1);
+        gridLayout_7->addLayout(gridLayout_6, 0, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1433, 26));
+        menuBar->setGeometry(QRect(0, 0, 1449, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -413,13 +414,11 @@ public:
         QWidget::setTabOrder(Expert1, Expert2);
         QWidget::setTabOrder(Expert2, Expert3);
         QWidget::setTabOrder(Expert3, Expert4);
-        QWidget::setTabOrder(Expert4, originalButton);
-        QWidget::setTabOrder(originalButton, loadTest);
+        QWidget::setTabOrder(Expert4, Expert5);
+        QWidget::setTabOrder(Expert5, loadTest);
         QWidget::setTabOrder(loadTest, comboBox);
-        QWidget::setTabOrder(comboBox, graphicsView);
-        QWidget::setTabOrder(graphicsView, buttonSave);
-        QWidget::setTabOrder(buttonSave, Expert5);
-        QWidget::setTabOrder(Expert5, lineEdit);
+        QWidget::setTabOrder(comboBox, originalButton);
+        QWidget::setTabOrder(originalButton, lineEdit);
         QWidget::setTabOrder(lineEdit, lineEdit_2);
         QWidget::setTabOrder(lineEdit_2, lineEdit_3);
         QWidget::setTabOrder(lineEdit_3, lineEdit_4);
@@ -429,26 +428,28 @@ public:
         QWidget::setTabOrder(lineEdit_7, lineEdit_8);
         QWidget::setTabOrder(lineEdit_8, lineEdit_9);
         QWidget::setTabOrder(lineEdit_9, lineEdit_10);
-        QWidget::setTabOrder(lineEdit_10, lineEdit_11);
-        QWidget::setTabOrder(lineEdit_11, lineEdit_12);
-        QWidget::setTabOrder(lineEdit_12, lineEdit_13);
-        QWidget::setTabOrder(lineEdit_13, lineEdit_14);
-        QWidget::setTabOrder(lineEdit_14, lineEdit_15);
-        QWidget::setTabOrder(lineEdit_15, lineEdit_16);
-        QWidget::setTabOrder(lineEdit_16, lineEdit_17);
-        QWidget::setTabOrder(lineEdit_17, lineEdit_18);
-        QWidget::setTabOrder(lineEdit_18, lineEdit_19);
-        QWidget::setTabOrder(lineEdit_19, lineEdit_20);
-        QWidget::setTabOrder(lineEdit_20, lineEdit_21);
-        QWidget::setTabOrder(lineEdit_21, lineEdit_22);
-        QWidget::setTabOrder(lineEdit_22, lineEdit_23);
-        QWidget::setTabOrder(lineEdit_23, lineEdit_24);
-        QWidget::setTabOrder(lineEdit_24, lineEdit_25);
-        QWidget::setTabOrder(lineEdit_25, lineEdit_26);
+        QWidget::setTabOrder(lineEdit_10, lineEdit_14);
+        QWidget::setTabOrder(lineEdit_14, lineEdit_19);
+        QWidget::setTabOrder(lineEdit_19, lineEdit_13);
+        QWidget::setTabOrder(lineEdit_13, lineEdit_15);
+        QWidget::setTabOrder(lineEdit_15, lineEdit_20);
+        QWidget::setTabOrder(lineEdit_20, lineEdit_12);
+        QWidget::setTabOrder(lineEdit_12, lineEdit_17);
+        QWidget::setTabOrder(lineEdit_17, lineEdit_16);
+        QWidget::setTabOrder(lineEdit_16, lineEdit_18);
+        QWidget::setTabOrder(lineEdit_18, lineEdit_11);
+        QWidget::setTabOrder(lineEdit_11, lineEdit_26);
         QWidget::setTabOrder(lineEdit_26, lineEdit_27);
-        QWidget::setTabOrder(lineEdit_27, lineEdit_28);
-        QWidget::setTabOrder(lineEdit_28, lineEdit_29);
-        QWidget::setTabOrder(lineEdit_29, lineEdit_30);
+        QWidget::setTabOrder(lineEdit_27, lineEdit_30);
+        QWidget::setTabOrder(lineEdit_30, lineEdit_24);
+        QWidget::setTabOrder(lineEdit_24, lineEdit_21);
+        QWidget::setTabOrder(lineEdit_21, lineEdit_28);
+        QWidget::setTabOrder(lineEdit_28, lineEdit_23);
+        QWidget::setTabOrder(lineEdit_23, lineEdit_25);
+        QWidget::setTabOrder(lineEdit_25, lineEdit_29);
+        QWidget::setTabOrder(lineEdit_29, lineEdit_22);
+        QWidget::setTabOrder(lineEdit_22, buttonSave);
+        QWidget::setTabOrder(buttonSave, graphicsView);
 
         retranslateUi(MainWindow);
 
@@ -506,13 +507,13 @@ public:
         loadTest->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214\n"
 " \321\202\320\265\321\201\321\202", Q_NULLPTR));
         Expert4->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 4", Q_NULLPTR));
-        originalButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \n"
-"\320\276\321\200\320\270\320\263\320\270\320\275\320\260\320\273", Q_NULLPTR));
         openImage->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214\n"
 " \320\270\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265", Q_NULLPTR));
         Expert1->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 1", Q_NULLPTR));
         Expert2->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 2", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "\320\235\320\276\320\274\320\265\321\200 \321\204\321\200\320\260\320\263\320\274\320\265\320\275\321\202\320\260", Q_NULLPTR));
+        originalButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \n"
+"\320\276\321\200\320\270\320\263\320\270\320\275\320\260\320\273", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\320\277\320\276\320\267\320\275\320\260\320\275\320\275\321\213\320\265\n"
 "    \321\201\320\270\320\274\320\262\320\276\320\273\321\213", Q_NULLPTR));
         buttonSave->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", Q_NULLPTR));

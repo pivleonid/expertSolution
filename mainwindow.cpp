@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <qt_windows.h>
+#include <QtTest/QTest>
 
 
 
@@ -15,20 +17,20 @@ MainWindow::MainWindow(QWidget *parent) :
   m_list = findChildren<QLineEdit *>();
 
 
-  QRegExp rx( "[а-я]" );
+  //QRegExp rx( "[а-я]" );
+  QRegExp rx( "[0-9A-Za-zА-Яа-я-]" );
   QValidator *validator = new QRegExpValidator(rx, this);
 
   foreach (auto i, m_list) {
       i->setEnabled(false);
+      connect(i, SIGNAL(textChanged(QString)), this, SLOT(nextTab()));
       lableList << i;
       i->setValidator(validator);
       i->setAlignment(Qt::AlignHCenter);
+
     }
 
-  expertTemplate << "а" << "б"<< "в" << "г"<< "д" << "е"<< "ж" \
-                 << "з"<< "и" << "к"<< "л" << "м"<<  "н" << "о"\
-                 << "п" << "р"<< "с" << "т"<< "у" << "ф"<< "х" \
-                 << "ц"<< "ч" << "ш"<< "щ" << "ы"<< "ь" << "э"<< "ю" << "я";
+
 
   connect(ui->Expert1, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
   connect(ui->Expert2, SIGNAL(clicked(bool)), this, SLOT(expertSolution()));
@@ -45,9 +47,29 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 
+
+
   ui->openImage->setToolTip("Открытие изображения чревато проведения нового эксперимента");
   ui->loadTest->setEnabled(false);
   ui->graphicsView->setScene(scen);
+
+  ui->Expert1->setEnabled(false);
+  ui->Expert2->setEnabled(false);
+  ui->Expert3->setEnabled(false);
+  ui->Expert4->setEnabled(false);
+  ui->Expert5->setEnabled(false);
+
+  ui->buttonSave->setEnabled(false);
+  ui->loadTest->setEnabled(false);
+}
+
+void MainWindow::nextTab(){
+
+
+ QTest::keyClick(this, Qt::Key_Tab); //нажатие клавиши Tab
+
+   int i;
+    i++;
 }
 
 MainWindow::~MainWindow()
@@ -79,7 +101,7 @@ void MainWindow::expertSolution(){
 
 void MainWindow::buttonSaveSlot(){
   //тут надо перебрать все клавишы
-  ui->loadTest->setEnabled(true);
+
   switch (flagExpert_) {
     case flag1:
       foreach (auto w, lableList) {
@@ -110,6 +132,7 @@ void MainWindow::buttonSaveSlot(){
           expert5 << w->text();
           w->setEnabled(false);
         }
+      ui->loadTest->setEnabled(true);
       //Анализ всех результатов
       expertAnaliz();
       ui->buttonSave->setEnabled(false);
@@ -137,7 +160,7 @@ foreach (auto expertTemplate_i, expertTemplate) {
 QMap<QString, int>::iterator symbols_i;
 for (symbols_i = symbols.begin(); symbols_i != symbols.end(); ) {
     int k = symbols_i.value();
-    if(k < 2){
+    if(k > 2){
         //symbols_i следующий элемент
         symbols_i = symbols.erase(symbols_i);
       }
@@ -146,8 +169,11 @@ for (symbols_i = symbols.begin(); symbols_i != symbols.end(); ) {
 //в ключе хранятся символы, которые увидели эксперты
 for (symbols_i = symbols.begin(); symbols_i != symbols.end(); symbols_i++) {
   expert_true << symbols_i.key();
+
   }
 
+int i;
+i++;
 }
 
 //отображение теста после экспертизы
@@ -249,14 +275,38 @@ void MainWindow::textFragment(){
 
 void MainWindow::openImage(){
   QString fileName_DATA = QFileDialog::getOpenFileName(this, tr("Open File"));
-  QFile file(fileName_DATA);
+    QFile file(fileName_DATA);
   if (!file.open(QIODevice::ReadOnly)) {
   qDebug()<<"Error open image";
   return;
   }
+  QString fileName = QFileInfo(file).fileName();
+  int len = fileName.length();
+  fileName.remove(len -3, 3);
+  fileName += "txt";
+
+  QString filepath = QFileInfo(file).absolutePath();
+  filepath += "/";
+   fileName = filepath + fileName;
+  QFile file_txt(fileName);
+  QString str;
+
+  if(file_txt.open(QIODevice::ReadOnly |QIODevice::Text)){
+      while (!file_txt.atEnd()) {
+          QByteArray line = file_txt.readLine();
+          str = line.data();// <- прочитанная строка
+        }
+    }
+
+
+
+  else qDebug()<< "don't open file";
+  expertTemplate = str.split(' ');
+
   scen->clear();
   pix->load(fileName_DATA);
   scen->addPixmap(*pix);
+ // ui->graphicsView->fitInView((QGraphicsItem*)pix , Qt::KeepAspectRatio );
 
   //Удаление всех элементов
   expert1.clear();
@@ -268,15 +318,15 @@ void MainWindow::openImage(){
   //кнопки в исходное состояние
   ui->Expert1->setEnabled(true);
   ui->Expert1->setChecked(false);
-  ui->Expert2->setEnabled(true);
+  ui->Expert2->setEnabled(false);
   ui->Expert2->setChecked(false);
-  ui->Expert3->setEnabled(true);
+  ui->Expert3->setEnabled(false);
   ui->Expert3->setChecked(false);
-  ui->Expert4->setEnabled(true);
+  ui->Expert4->setEnabled(false);
   ui->Expert4->setChecked(false);
-  ui->Expert5->setEnabled(true);
+  ui->Expert5->setEnabled(false);
   ui->Expert5->setChecked(false);
-  ui->buttonSave->setEnabled(true);
+  ui->buttonSave->setEnabled(false);
   ui->loadTest->setEnabled(false);
 }
 

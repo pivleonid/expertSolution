@@ -7,6 +7,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QDebug>
+#include <QMap>
 
 namespace Ui {
   class MainWindow;
@@ -34,6 +35,8 @@ public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
 public slots:
+  void nextTab(void);
+
   void expertSolution(void);
   void expertButton();
   void buttonSaveSlot();
@@ -46,6 +49,7 @@ private:
   //ограничитель ввода текста
   void textEditChange();
   Ui::MainWindow *ui;
+  QMap<QString, bool> label_N;
   enum flagExpert {flag1, flag2, flag3, flag4, flag5}flagExpert_;
 };
 
