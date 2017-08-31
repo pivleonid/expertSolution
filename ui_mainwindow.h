@@ -52,8 +52,10 @@ public:
     QLabel *label_2;
     QPushButton *originalButton;
     QSpacerItem *verticalSpacer_4;
-    QGraphicsView *graphicsView;
     QSpacerItem *horizontalSpacer;
+    QGridLayout *gridLayout_8;
+    QGraphicsView *graphicsView;
+    QLabel *label_Text;
     QSpacerItem *verticalSpacer_3;
     QGridLayout *gridLayout_5;
     QLabel *label;
@@ -124,6 +126,11 @@ public:
 
         Expert3 = new QCheckBox(centralWidget);
         Expert3->setObjectName(QStringLiteral("Expert3"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(Expert3->sizePolicy().hasHeightForWidth());
+        Expert3->setSizePolicy(sizePolicy);
 
         gridLayout_2->addWidget(Expert3, 3, 0, 1, 1);
 
@@ -132,6 +139,8 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         comboBox = new QComboBox(centralWidget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
+        sizePolicy.setHeightForWidth(comboBox->sizePolicy().hasHeightForWidth());
+        comboBox->setSizePolicy(sizePolicy);
 
         gridLayout->addWidget(comboBox, 0, 0, 1, 1);
 
@@ -144,28 +153,40 @@ public:
 
         Expert5 = new QCheckBox(centralWidget);
         Expert5->setObjectName(QStringLiteral("Expert5"));
+        sizePolicy.setHeightForWidth(Expert5->sizePolicy().hasHeightForWidth());
+        Expert5->setSizePolicy(sizePolicy);
 
         gridLayout_2->addWidget(Expert5, 5, 0, 1, 1);
 
         loadTest = new QPushButton(centralWidget);
         loadTest->setObjectName(QStringLiteral("loadTest"));
+        sizePolicy.setHeightForWidth(loadTest->sizePolicy().hasHeightForWidth());
+        loadTest->setSizePolicy(sizePolicy);
+        loadTest->setFlat(false);
 
         gridLayout_2->addWidget(loadTest, 6, 0, 1, 1);
 
         Expert4 = new QCheckBox(centralWidget);
         Expert4->setObjectName(QStringLiteral("Expert4"));
+        sizePolicy.setHeightForWidth(Expert4->sizePolicy().hasHeightForWidth());
+        Expert4->setSizePolicy(sizePolicy);
 
         gridLayout_2->addWidget(Expert4, 4, 0, 1, 1);
 
         openImage = new QPushButton(centralWidget);
         openImage->setObjectName(QStringLiteral("openImage"));
+        sizePolicy.setHeightForWidth(openImage->sizePolicy().hasHeightForWidth());
+        openImage->setSizePolicy(sizePolicy);
         openImage->setFocusPolicy(Qt::WheelFocus);
+        openImage->setFlat(false);
 
         gridLayout_2->addWidget(openImage, 0, 0, 1, 1);
 
         Expert1 = new QCheckBox(centralWidget);
         Expert1->setObjectName(QStringLiteral("Expert1"));
         Expert1->setEnabled(true);
+        sizePolicy.setHeightForWidth(Expert1->sizePolicy().hasHeightForWidth());
+        Expert1->setSizePolicy(sizePolicy);
         Expert1->setCheckable(true);
         Expert1->setChecked(false);
 
@@ -173,6 +194,8 @@ public:
 
         Expert2 = new QCheckBox(centralWidget);
         Expert2->setObjectName(QStringLiteral("Expert2"));
+        sizePolicy.setHeightForWidth(Expert2->sizePolicy().hasHeightForWidth());
+        Expert2->setSizePolicy(sizePolicy);
 
         gridLayout_2->addWidget(Expert2, 2, 0, 1, 1);
 
@@ -183,6 +206,9 @@ public:
 
         originalButton = new QPushButton(centralWidget);
         originalButton->setObjectName(QStringLiteral("originalButton"));
+        sizePolicy.setHeightForWidth(originalButton->sizePolicy().hasHeightForWidth());
+        originalButton->setSizePolicy(sizePolicy);
+        originalButton->setFlat(false);
 
         gridLayout_2->addWidget(originalButton, 11, 0, 1, 1);
 
@@ -191,19 +217,38 @@ public:
         gridLayout_2->addItem(verticalSpacer_4, 10, 0, 1, 1);
 
 
-        gridLayout_4->addLayout(gridLayout_2, 0, 0, 1, 1);
+        gridLayout_4->addLayout(gridLayout_2, 1, 0, 1, 1);
 
+        horizontalSpacer = new QSpacerItem(13, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+        gridLayout_4->addItem(horizontalSpacer, 1, 1, 1, 1);
+
+        gridLayout_8 = new QGridLayout();
+        gridLayout_8->setSpacing(6);
+        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
         graphicsView = new QGraphicsView(centralWidget);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
+        graphicsView->setFrameShape(QFrame::NoFrame);
+        graphicsView->setFrameShadow(QFrame::Raised);
         graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
         graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-        graphicsView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
+        graphicsView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
 
-        gridLayout_4->addWidget(graphicsView, 0, 2, 1, 1);
+        gridLayout_8->addWidget(graphicsView, 0, 0, 1, 1);
 
-        horizontalSpacer = new QSpacerItem(13, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        label_Text = new QLabel(centralWidget);
+        label_Text->setObjectName(QStringLiteral("label_Text"));
+        QFont font;
+        font.setPointSize(15);
+        label_Text->setFont(font);
+        label_Text->setFrameShape(QFrame::Box);
+        label_Text->setFrameShadow(QFrame::Raised);
+        label_Text->setAlignment(Qt::AlignCenter);
 
-        gridLayout_4->addItem(horizontalSpacer, 0, 1, 1, 1);
+        gridLayout_8->addWidget(label_Text, 0, 1, 1, 1);
+
+
+        gridLayout_4->addLayout(gridLayout_8, 1, 2, 1, 1);
 
 
         gridLayout_6->addLayout(gridLayout_4, 0, 0, 1, 2);
@@ -449,7 +494,6 @@ public:
         QWidget::setTabOrder(lineEdit_25, lineEdit_29);
         QWidget::setTabOrder(lineEdit_29, lineEdit_22);
         QWidget::setTabOrder(lineEdit_22, buttonSave);
-        QWidget::setTabOrder(buttonSave, graphicsView);
 
         retranslateUi(MainWindow);
 
@@ -514,6 +558,7 @@ public:
         label_2->setText(QApplication::translate("MainWindow", "\320\235\320\276\320\274\320\265\321\200 \321\204\321\200\320\260\320\263\320\274\320\265\320\275\321\202\320\260", Q_NULLPTR));
         originalButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \n"
 "\320\276\321\200\320\270\320\263\320\270\320\275\320\260\320\273", Q_NULLPTR));
+        label_Text->setText(QString());
         label->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\320\277\320\276\320\267\320\275\320\260\320\275\320\275\321\213\320\265\n"
 "    \321\201\320\270\320\274\320\262\320\276\320\273\321\213", Q_NULLPTR));
         buttonSave->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", Q_NULLPTR));

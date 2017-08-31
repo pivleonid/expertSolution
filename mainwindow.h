@@ -8,6 +8,8 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QMap>
+#include <QResizeEvent>
+#include <QGraphicsTextItem>
 
 namespace Ui {
   class MainWindow;
@@ -44,13 +46,15 @@ public slots:
   void openImage();
   //показать фрагмент оригинального текста
   void textFragment();
+  virtual void resizeEvent(QResizeEvent *event);
 private:
   void expertAnaliz();
   //ограничитель ввода текста
   void textEditChange();
   Ui::MainWindow *ui;
-  QMap<QString, bool> label_N;
+  QMap<QString, bool>* label_N; //ключ- имя textEdit, значение - флаг. ежели все флаги стоят- разрешить сохранение
   enum flagExpert {flag1, flag2, flag3, flag4, flag5}flagExpert_;
+  QGraphicsTextItem* textItem;
 };
 
 #endif // MAINWINDOW_H

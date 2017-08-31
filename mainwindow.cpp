@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <qt_windows.h>
 #include <QtTest/QTest>
-
+#include <QTextCodec>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -10,6 +10,10 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
+  //устанавливаю тестовый кодек
+  QTextCodec *codec = QTextCodec::codecForName("CP1251");
+  QTextCodec::setCodecForLocale(codec);
+
   pix = new QPixmap;
   scen = new QGraphicsScene;
 
@@ -21,12 +25,14 @@ MainWindow::MainWindow(QWidget *parent) :
   QRegExp rx( "[0-9A-Za-zА-Яа-я-]" );
   QValidator *validator = new QRegExpValidator(rx, this);
 
+  label_N = new QMap<QString, bool>;
   foreach (auto i, m_list) {
       i->setEnabled(false);
       connect(i, SIGNAL(textChanged(QString)), this, SLOT(nextTab()));
       lableList << i;
       i->setValidator(validator);
       i->setAlignment(Qt::AlignHCenter);
+      label_N->insert(i->objectName(), false);
 
     }
 
@@ -46,8 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(ui->openImage, SIGNAL(clicked(bool)),this,SLOT(openImage()));
 
 
-
-
+ //connect(ui->centralWidget,SIGNAL())
 
   ui->openImage->setToolTip("Открытие изображения чревато проведения нового эксперимента");
   ui->loadTest->setEnabled(false);
@@ -61,19 +66,54 @@ MainWindow::MainWindow(QWidget *parent) :
 
   ui->buttonSave->setEnabled(false);
   ui->loadTest->setEnabled(false);
+
+  ui->label_Text->hide();
 }
 
 void MainWindow::nextTab(){
+  QObject* obj = QObject::sender();
+  QLineEdit* line = dynamic_cast<QLineEdit*> (obj);
+  QString lineName = line->objectName();
+  QMap<QString, bool>::iterator iter;
+  QStringList labelFlagTrue;// = expert_true.toSet().toList();
+  if(line->text() == " " || line->text() == ""){
+      for (iter = label_N->begin();iter != label_N->end(); iter++) {
+
+          if(iter.key() == lineName)
+            iter.value() = false;
+        }
+    }
+
+  //ежели символ не пропущен
+  else{
+      for (iter = label_N->begin();iter != label_N->end(); iter++) {
+
+          if(iter.key() == lineName)
+            iter.value() = true;
+
+        }
+    }
+  for (iter = label_N->begin();iter != label_N->end(); iter++) {
+      labelFlagTrue << QString(iter.value());
+    }
+  labelFlagTrue= labelFlagTrue.toSet().toList();
+  //если эксперт вбил значения во все поля
+  if (labelFlagTrue.count() == 1 && labelFlagTrue[0] == true){
+      ui->buttonSave->setEnabled(true);
+      //обнуление
+      for (iter = label_N->begin();iter != label_N->end(); iter++)
+        iter.value() = false;
+    }
 
 
- QTest::keyClick(this, Qt::Key_Tab); //нажатие клавиши Tab
+  QTest::keyClick(this, Qt::Key_Tab); //нажатие клавиши Tab
 
-   int i;
-    i++;
+
 }
 
 MainWindow::~MainWindow()
 {
+  delete label_N;
   delete ui;
   delete pix;
   delete scen;
@@ -86,7 +126,7 @@ void MainWindow::expertSolution(){
   QObject* obj = QObject::sender();
   QCheckBox* chBox = dynamic_cast<QCheckBox*> (obj);
   chBox->setEnabled(false);
-  ui->buttonSave->setEnabled(true);
+  //ui->buttonSave->setEnabled(true);
   foreach (auto i, lableList) {
       i->setEnabled(true);
       i->clear();
@@ -108,30 +148,43 @@ void MainWindow::buttonSaveSlot(){
           expert1 <<  w->text();
           w->setEnabled(false);
         }
+      ui->Expert1->setEnabled(false);
+      ui->Expert2->setEnabled(true);
+      ui->buttonSave->setEnabled(false);
       break;
     case flag2:
       foreach (auto w, lableList) {
           expert2 << w->text();
           w->setEnabled(false);
         }
+      ui->Expert2->setEnabled(false);
+      ui->Expert3->setEnabled(true);
+      ui->buttonSave->setEnabled(false);
       break;
     case flag3:
       foreach (auto w, lableList) {
           expert3 << w->text();
           w->setEnabled(false);
         }
+      ui->Expert3->setEnabled(false);
+      ui->Expert4->setEnabled(true);
+      ui->buttonSave->setEnabled(false);
       break;
     case flag4:
       foreach (auto w, lableList) {
           expert4 << w->text();
           w->setEnabled(false);
         }
+      ui->Expert4->setEnabled(false);
+      ui->Expert5->setEnabled(true);
+      ui->buttonSave->setEnabled(false);
       break;
     case flag5:
       foreach (auto w, lableList) {
           expert5 << w->text();
           w->setEnabled(false);
         }
+      ui->Expert5->setEnabled(false);
       ui->loadTest->setEnabled(true);
       //Анализ всех результатов
       expertAnaliz();
@@ -145,31 +198,48 @@ void MainWindow::buttonSaveSlot(){
 }
 
 void MainWindow::expertAnaliz(){
-QMap<QString, int> symbols;
-expert1 = expert1 + expert2 + expert3 + expert4 + expert5;
-int count = 0;
-//формирую словарь symbols. Сколько экспертов увидели одинаковые буквы
-foreach (auto expertTemplate_i, expertTemplate) {
-    count = 0;
-    foreach (auto expert1_i, expert1) {
-        if(expertTemplate_i == expert1_i)
-          count++;
-        symbols.insert(expertTemplate_i, count);
-      }
-  }
-QMap<QString, int>::iterator symbols_i;
-for (symbols_i = symbols.begin(); symbols_i != symbols.end(); ) {
-    int k = symbols_i.value();
-    if(k > 2){
-        //symbols_i следующий элемент
-        symbols_i = symbols.erase(symbols_i);
-      }
-    else symbols_i++;
-  }
-//в ключе хранятся символы, которые увидели эксперты
-for (symbols_i = symbols.begin(); symbols_i != symbols.end(); symbols_i++) {
-  expert_true << symbols_i.key();
+//QMap<QString, int> symbols;
+//expert1 = expert1 + expert2 + expert3 + expert4 + expert5;
+//int count = 0;
+////формирую словарь symbols. Сколько экспертов увидели одинаковые буквы
+//foreach (auto expertTemplate_i, expertTemplate) {
+//    count = 0;
+//    foreach (auto expert1_i, expert1) {
+//        if(expertTemplate_i == expert1_i)
+//          count++;
+//        symbols.insert(expertTemplate_i, count);
+//      }
+//  }
+//QMap<QString, int>::iterator symbols_i;
+//for (symbols_i = symbols.begin(); symbols_i != symbols.end(); ) {
+//    int k = symbols_i.value();
+//    if(k < 3){
+//        //symbols_i следующий элемент
+//        symbols_i = symbols.erase(symbols_i);
+//      }
+//    else symbols_i++;
+//  }
+////в ключе хранятся символы, которые увидели эксперты
+//for (symbols_i = symbols.begin(); symbols_i != symbols.end(); symbols_i++) {
+//  expert_true << symbols_i.key();
 
+//  }
+
+QString result;
+int count1;
+for(int i = 0; i < 30; i++){
+    result = expert1[i] + expert2[i] + expert3[i] + expert4[i] + expert5[i];
+    count1 = 0;
+    for(int j = 0; j < result.count(); j++){
+
+        if(result[j] == expertTemplate.at(i))
+          count1++;
+        if(count1 > 2){
+          expert_true.append( expertTemplate.at(i));
+          j = 5;
+          }
+
+      }
   }
 
 int i;
@@ -226,15 +296,24 @@ void MainWindow::loadTest(){
     string[i] = string[i] + "\n";
     stringText = stringText + string[i];
     }
-  scen->setSceneRect(0, -300, ui->graphicsView->width()-10, ui->graphicsView->height()-10);
+ // scen->setSceneRect(0, -300, ui->graphicsView->width()-10, ui->graphicsView->height()-10);
+  ui->label_Text->setText(stringText);
   QFont f;
   f.setPointSize(15);
-  scen->addText(stringText, f);
+  //scen->addText(stringText, f);
+   textItem = new QGraphicsTextItem;
+    textItem  = scen->addText(stringText, f);
+  //scen->setSceneRect(0, 0, ui->graphicsView->width(), ui->graphicsView->height());
+ // ui->graphicsView->fitInView(scen->itemsBoundingRect(), Qt::KeepAspectRatio);
 
+  ui->graphicsView->hide();
+  ui->label_Text->show();
 }
 
 //отображение фрагмента текса на экране
 void MainWindow::textFragment(){
+  ui->graphicsView->hide();
+   ui->label_Text->show();
   int number = ui->comboBox->currentText().toInt();
   QString  str;
   QFile file("Образцы.txt");
@@ -266,14 +345,18 @@ void MainWindow::textFragment(){
     stringText = stringText + string[i];
     }
   //место отображения текста на экране
-  scen->setSceneRect(0, -300, ui->graphicsView->width()-10, ui->graphicsView->height()-10);
+ // scen->setSceneRect(0, 0, ui->graphicsView->width(), ui->graphicsView->height());
   QFont f; //размер шрифта
   f.setPointSize(15);
   scen->addText(stringText, f);
+  ui->label_Text->setText(stringText);
+  //ui->graphicsView->fitInView(scen->itemsBoundingRect(), Qt::KeepAspectRatio);
 }
 
 
 void MainWindow::openImage(){
+  ui->graphicsView->show();
+   ui->label_Text->hide();
   QString fileName_DATA = QFileDialog::getOpenFileName(this, tr("Open File"));
     QFile file(fileName_DATA);
   if (!file.open(QIODevice::ReadOnly)) {
@@ -306,6 +389,9 @@ void MainWindow::openImage(){
   scen->clear();
   pix->load(fileName_DATA);
   scen->addPixmap(*pix);
+     //scen->setSceneRect(300, 170, ui->graphicsView->width(), ui->graphicsView->height());
+  ui->graphicsView->fitInView(scen->itemsBoundingRect(), Qt::KeepAspectRatio);
+
  // ui->graphicsView->fitInView((QGraphicsItem*)pix , Qt::KeepAspectRatio );
 
   //Удаление всех элементов
@@ -331,3 +417,6 @@ void MainWindow::openImage(){
 }
 
 
+void MainWindow::resizeEvent(QResizeEvent *event){
+  ui->graphicsView->fitInView(scen->itemsBoundingRect(), Qt::KeepAspectRatio);
+}
