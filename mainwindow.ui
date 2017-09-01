@@ -64,7 +64,7 @@
             <item row="0" column="0">
              <widget class="QComboBox" name="comboBox">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -271,28 +271,6 @@
               </item>
              </widget>
             </item>
-            <item row="0" column="1">
-             <spacer name="horizontalSpacer_3">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
            </layout>
           </item>
           <item row="5" column="0">
@@ -303,6 +281,12 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="font">
+             <font>
+              <underline>false</underline>
+              <kerning>true</kerning>
+             </font>
+            </property>
             <property name="text">
              <string>Эксперт 5</string>
             </property>
@@ -311,14 +295,13 @@
           <item row="6" column="0">
            <widget class="QPushButton" name="loadTest">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Загрузить
- тест</string>
+             <string>Загрузить тест</string>
             </property>
             <property name="flat">
              <bool>false</bool>
@@ -350,8 +333,7 @@
              <enum>Qt::WheelFocus</enum>
             </property>
             <property name="text">
-             <string>Открыть
- изображение</string>
+             <string>Открыть изображение</string>
             </property>
             <property name="flat">
              <bool>false</bool>
@@ -398,19 +380,21 @@
             <property name="text">
              <string>Номер фрагмента</string>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </item>
           <item row="11" column="0">
            <widget class="QPushButton" name="originalButton">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Загрузить 
-оригинал</string>
+             <string>Загрузить оригинал</string>
             </property>
             <property name="flat">
              <bool>false</bool>
@@ -518,8 +502,7 @@
            <enum>Qt::LeftToRight</enum>
           </property>
           <property name="text">
-           <string>Распознанные
-    символы</string>
+           <string>Распознанные символы</string>
           </property>
          </widget>
         </item>

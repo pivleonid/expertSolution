@@ -42,7 +42,6 @@ public:
     QCheckBox *Expert3;
     QGridLayout *gridLayout;
     QComboBox *comboBox;
-    QSpacerItem *horizontalSpacer_3;
     QCheckBox *Expert5;
     QPushButton *loadTest;
     QCheckBox *Expert4;
@@ -139,14 +138,13 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         comboBox = new QComboBox(centralWidget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        sizePolicy.setHeightForWidth(comboBox->sizePolicy().hasHeightForWidth());
-        comboBox->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(comboBox->sizePolicy().hasHeightForWidth());
+        comboBox->setSizePolicy(sizePolicy1);
 
         gridLayout->addWidget(comboBox, 0, 0, 1, 1);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_3, 0, 1, 1, 1);
 
 
         gridLayout_2->addLayout(gridLayout, 9, 0, 1, 1);
@@ -155,13 +153,17 @@ public:
         Expert5->setObjectName(QStringLiteral("Expert5"));
         sizePolicy.setHeightForWidth(Expert5->sizePolicy().hasHeightForWidth());
         Expert5->setSizePolicy(sizePolicy);
+        QFont font;
+        font.setUnderline(false);
+        font.setKerning(true);
+        Expert5->setFont(font);
 
         gridLayout_2->addWidget(Expert5, 5, 0, 1, 1);
 
         loadTest = new QPushButton(centralWidget);
         loadTest->setObjectName(QStringLiteral("loadTest"));
-        sizePolicy.setHeightForWidth(loadTest->sizePolicy().hasHeightForWidth());
-        loadTest->setSizePolicy(sizePolicy);
+        sizePolicy1.setHeightForWidth(loadTest->sizePolicy().hasHeightForWidth());
+        loadTest->setSizePolicy(sizePolicy1);
         loadTest->setFlat(false);
 
         gridLayout_2->addWidget(loadTest, 6, 0, 1, 1);
@@ -201,13 +203,14 @@ public:
 
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setAlignment(Qt::AlignCenter);
 
         gridLayout_2->addWidget(label_2, 8, 0, 1, 1);
 
         originalButton = new QPushButton(centralWidget);
         originalButton->setObjectName(QStringLiteral("originalButton"));
-        sizePolicy.setHeightForWidth(originalButton->sizePolicy().hasHeightForWidth());
-        originalButton->setSizePolicy(sizePolicy);
+        sizePolicy1.setHeightForWidth(originalButton->sizePolicy().hasHeightForWidth());
+        originalButton->setSizePolicy(sizePolicy1);
         originalButton->setFlat(false);
 
         gridLayout_2->addWidget(originalButton, 11, 0, 1, 1);
@@ -238,9 +241,9 @@ public:
 
         label_Text = new QLabel(centralWidget);
         label_Text->setObjectName(QStringLiteral("label_Text"));
-        QFont font;
-        font.setPointSize(15);
-        label_Text->setFont(font);
+        QFont font1;
+        font1.setPointSize(15);
+        label_Text->setFont(font1);
         label_Text->setFrameShape(QFrame::Box);
         label_Text->setFrameShadow(QFrame::Raised);
         label_Text->setAlignment(Qt::AlignCenter);
@@ -548,19 +551,15 @@ public:
          << QApplication::translate("MainWindow", "40", Q_NULLPTR)
         );
         Expert5->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 5", Q_NULLPTR));
-        loadTest->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214\n"
-" \321\202\320\265\321\201\321\202", Q_NULLPTR));
+        loadTest->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\202\320\265\321\201\321\202", Q_NULLPTR));
         Expert4->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 4", Q_NULLPTR));
-        openImage->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214\n"
-" \320\270\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265", Q_NULLPTR));
+        openImage->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214 \320\270\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265", Q_NULLPTR));
         Expert1->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 1", Q_NULLPTR));
         Expert2->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 2", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "\320\235\320\276\320\274\320\265\321\200 \321\204\321\200\320\260\320\263\320\274\320\265\320\275\321\202\320\260", Q_NULLPTR));
-        originalButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \n"
-"\320\276\321\200\320\270\320\263\320\270\320\275\320\260\320\273", Q_NULLPTR));
+        originalButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \320\276\321\200\320\270\320\263\320\270\320\275\320\260\320\273", Q_NULLPTR));
         label_Text->setText(QString());
-        label->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\320\277\320\276\320\267\320\275\320\260\320\275\320\275\321\213\320\265\n"
-"    \321\201\320\270\320\274\320\262\320\276\320\273\321\213", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\320\277\320\276\320\267\320\275\320\260\320\275\320\275\321\213\320\265 \321\201\320\270\320\274\320\262\320\276\320\273\321\213", Q_NULLPTR));
         buttonSave->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", Q_NULLPTR));
         lineEdit->setText(QString());
         lineEdit_2->setText(QString());

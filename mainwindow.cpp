@@ -146,7 +146,11 @@ void MainWindow::buttonSaveSlot(){
     case flag1:
       foreach (auto w, lableList) {
           expert1 <<  w->text();
+          //запрет на изменение
           w->setEnabled(false);
+          //стирание данных
+          w->clear();
+
         }
       ui->Expert1->setEnabled(false);
       ui->Expert2->setEnabled(true);
@@ -156,6 +160,8 @@ void MainWindow::buttonSaveSlot(){
       foreach (auto w, lableList) {
           expert2 << w->text();
           w->setEnabled(false);
+          //стирание данных
+          w->clear();
         }
       ui->Expert2->setEnabled(false);
       ui->Expert3->setEnabled(true);
@@ -165,6 +171,8 @@ void MainWindow::buttonSaveSlot(){
       foreach (auto w, lableList) {
           expert3 << w->text();
           w->setEnabled(false);
+          //стирание данных
+          w->clear();
         }
       ui->Expert3->setEnabled(false);
       ui->Expert4->setEnabled(true);
@@ -174,6 +182,8 @@ void MainWindow::buttonSaveSlot(){
       foreach (auto w, lableList) {
           expert4 << w->text();
           w->setEnabled(false);
+          //стирание данных
+          w->clear();
         }
       ui->Expert4->setEnabled(false);
       ui->Expert5->setEnabled(true);
@@ -183,6 +193,8 @@ void MainWindow::buttonSaveSlot(){
       foreach (auto w, lableList) {
           expert5 << w->text();
           w->setEnabled(false);
+          //стирание данных
+          w->clear();
         }
       ui->Expert5->setEnabled(false);
       ui->loadTest->setEnabled(true);
@@ -284,6 +296,11 @@ void MainWindow::loadTest(){
 
         }
     }
+  //Если не было совпадений => expert_true = 0
+  if( expert_true.count() == 0 ){
+      for( int i = 0; i < contStr; i++ )
+        str[i] = '_';
+    }
 // отображение текста
   scen->clear();
   double contStr_d = (double)contStr/100;
@@ -357,7 +374,7 @@ void MainWindow::textFragment(){
 void MainWindow::openImage(){
   ui->graphicsView->show();
    ui->label_Text->hide();
-  QString fileName_DATA = QFileDialog::getOpenFileName(this, tr("Open File"));
+  QString fileName_DATA = QFileDialog::getOpenFileName(this, tr("Open File"),"", tr("Images(*.jpg *.tif)"));
     QFile file(fileName_DATA);
   if (!file.open(QIODevice::ReadOnly)) {
   qDebug()<<"Error open image";
