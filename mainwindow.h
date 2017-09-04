@@ -55,6 +55,7 @@ private:
   QMap<QString, bool>* label_N; //ключ- имя textEdit, значение - флаг. ежели все флаги стоят- разрешить сохранение
   enum flagExpert {flag1, flag2, flag3, flag4, flag5}flagExpert_;
   QGraphicsTextItem* textItem;
+  QList <QLineEdit *> m_list;
 };
 
 #endif // MAINWINDOW_H

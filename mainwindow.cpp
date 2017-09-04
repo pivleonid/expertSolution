@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <qt_windows.h>
-#include <QtTest/QTest>
 #include <QTextCodec>
 
 
@@ -17,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
   pix = new QPixmap;
   scen = new QGraphicsScene;
 
-  QList <QLineEdit *> m_list;
+
   m_list = findChildren<QLineEdit *>();
 
 
@@ -68,9 +67,15 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->loadTest->setEnabled(false);
 
   ui->label_Text->hide();
+
 }
 
 void MainWindow::nextTab(){
+
+  //по нажатю кнопки сохранить из полей удаляются символы
+  //и вызывается эта функция
+
+
   QObject* obj = QObject::sender();
   QLineEdit* line = dynamic_cast<QLineEdit*> (obj);
   QString lineName = line->objectName();
@@ -105,8 +110,17 @@ void MainWindow::nextTab(){
         iter.value() = false;
     }
 
+  QLineEdit* ckick;
+  for(QList <QLineEdit *>::iterator i = m_list.begin(); i < m_list.end() - 1; i++){
+      if(*i == line){
+          i++;
+          ckick = *i;
+          ckick->setFocus();
+          break;
+        }
+    }
 
-  QTest::keyClick(this, Qt::Key_Tab); //нажатие клавиши Tab
+  //QTest::keyClick(this, Qt::Key_Tab); //нажатие клавиши Tab
 
 
 }
@@ -140,8 +154,8 @@ void MainWindow::expertSolution(){
 }
 
 void MainWindow::buttonSaveSlot(){
-  //тут надо перебрать все клавишы
 
+  //тут надо перебрать все клавишы
   switch (flagExpert_) {
     case flag1:
       foreach (auto w, lableList) {
