@@ -405,10 +405,14 @@ void MainWindow::openImage(){
   QFile file_txt(fileName);
   QString str;
 
+
+  QTextCodec *codec = QTextCodec::codecForName("windows-1251");
+
   if(file_txt.open(QIODevice::ReadOnly |QIODevice::Text)){
       while (!file_txt.atEnd()) {
           QByteArray line = file_txt.readLine();
-          str = line.data();// <- прочитанная строка
+          str = codec->toUnicode(line);
+          //str = line.data();// <- прочитанная строка
         }
     }
 
