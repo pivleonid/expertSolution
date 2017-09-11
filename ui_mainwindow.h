@@ -25,6 +25,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -53,8 +54,8 @@ public:
     QSpacerItem *verticalSpacer_4;
     QSpacerItem *horizontalSpacer;
     QGridLayout *gridLayout_8;
+    QTextEdit *textEdit;
     QGraphicsView *graphicsView;
-    QLabel *label_Text;
     QSpacerItem *verticalSpacer_3;
     QGridLayout *gridLayout_5;
     QLabel *label;
@@ -229,6 +230,14 @@ public:
         gridLayout_8 = new QGridLayout();
         gridLayout_8->setSpacing(6);
         gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
+        textEdit = new QTextEdit(centralWidget);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        QFont font1;
+        font1.setPointSize(20);
+        textEdit->setFont(font1);
+
+        gridLayout_8->addWidget(textEdit, 0, 1, 1, 1);
+
         graphicsView = new QGraphicsView(centralWidget);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
         graphicsView->setFrameShape(QFrame::NoFrame);
@@ -238,17 +247,6 @@ public:
         graphicsView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
 
         gridLayout_8->addWidget(graphicsView, 0, 0, 1, 1);
-
-        label_Text = new QLabel(centralWidget);
-        label_Text->setObjectName(QStringLiteral("label_Text"));
-        QFont font1;
-        font1.setPointSize(15);
-        label_Text->setFont(font1);
-        label_Text->setFrameShape(QFrame::Box);
-        label_Text->setFrameShadow(QFrame::Raised);
-        label_Text->setAlignment(Qt::AlignCenter);
-
-        gridLayout_8->addWidget(label_Text, 0, 1, 1, 1);
 
 
         gridLayout_4->addLayout(gridLayout_8, 1, 2, 1, 1);
@@ -450,7 +448,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1449, 26));
+        menuBar->setGeometry(QRect(0, 0, 1449, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -507,49 +505,6 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\320\274\320\276\320\264\321\203\320\273\321\214 \321\215\320\272\321\201\320\277\320\265\321\200\321\202\320\275\320\276\320\271 \320\276\321\206\320\265\320\275\320\272\320\270 \320\274\320\260\320\272\320\265\321\202\320\260 \320\232\320\236\320\227\320\230 \320\237\320\255\320\234\320\230", Q_NULLPTR));
         Expert3->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 3", Q_NULLPTR));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "1", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "2", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "3", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "4", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "5", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "6", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "7", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "8", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "9", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "10", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "11", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "12", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "13", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "14", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "15", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "16", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "17", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "18", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "19", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "20", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "21", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "22", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "23", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "24", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "25", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "26", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "27", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "28", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "29", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "30", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "31", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "32", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "33", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "34", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "35", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "36", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "37", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "38", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "39", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "40", Q_NULLPTR)
-        );
         Expert5->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 5", Q_NULLPTR));
         loadTest->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\202\320\265\321\201\321\202", Q_NULLPTR));
         Expert4->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 4", Q_NULLPTR));
@@ -558,7 +513,6 @@ public:
         Expert2->setText(QApplication::translate("MainWindow", "\320\255\320\272\321\201\320\277\320\265\321\200\321\202 2", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "\320\235\320\276\320\274\320\265\321\200 \321\204\321\200\320\260\320\263\320\274\320\265\320\275\321\202\320\260", Q_NULLPTR));
         originalButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \320\276\321\200\320\270\320\263\320\270\320\275\320\260\320\273", Q_NULLPTR));
-        label_Text->setText(QString());
         label->setText(QApplication::translate("MainWindow", "\320\240\320\260\321\201\320\277\320\276\320\267\320\275\320\260\320\275\320\275\321\213\320\265 \321\201\320\270\320\274\320\262\320\276\320\273\321\213", Q_NULLPTR));
         buttonSave->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", Q_NULLPTR));
         lineEdit->setText(QString());

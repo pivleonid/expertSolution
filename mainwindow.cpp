@@ -9,9 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
-  //устанавливаю тестовый кодек
-  QTextCodec *codec = QTextCodec::codecForName("CP1251");
-  QTextCodec::setCodecForLocale(codec);
 
   pix = new QPixmap;
   scen = new QGraphicsScene;
@@ -66,7 +63,33 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->buttonSave->setEnabled(false);
   ui->loadTest->setEnabled(false);
 
-  ui->label_Text->hide();
+  ui->textEdit->hide();
+
+  // устанавливаю нужное количество выпадаюшего списка
+
+  QString  str;
+  QFile file("Образцы.txt");
+  setlocale(LC_ALL,"");
+  QTextCodec *codec = QTextCodec::codecForName("CP1251");
+    int count = 0;
+  if(file.open(QIODevice::ReadOnly |QIODevice::Text)){
+
+      while (!file.atEnd())
+        {
+          QByteArray line = file.readLine();
+           str = codec->toUnicode(line);
+          count++;
+           ui->comboBox->addItem(QString::number(count));
+        }
+
+  }
+
+  else qDebug()<< "don't open file";
+
+
+
+  int i= 0;
+  i++;
 
 }
 
@@ -224,32 +247,7 @@ void MainWindow::buttonSaveSlot(){
 }
 
 void MainWindow::expertAnaliz(){
-//QMap<QString, int> symbols;
-//expert1 = expert1 + expert2 + expert3 + expert4 + expert5;
-//int count = 0;
-////формирую словарь symbols. Сколько экспертов увидели одинаковые буквы
-//foreach (auto expertTemplate_i, expertTemplate) {
-//    count = 0;
-//    foreach (auto expert1_i, expert1) {
-//        if(expertTemplate_i == expert1_i)
-//          count++;
-//        symbols.insert(expertTemplate_i, count);
-//      }
-//  }
-//QMap<QString, int>::iterator symbols_i;
-//for (symbols_i = symbols.begin(); symbols_i != symbols.end(); ) {
-//    int k = symbols_i.value();
-//    if(k < 3){
-//        //symbols_i следующий элемент
-//        symbols_i = symbols.erase(symbols_i);
-//      }
-//    else symbols_i++;
-//  }
-////в ключе хранятся символы, которые увидели эксперты
-//for (symbols_i = symbols.begin(); symbols_i != symbols.end(); symbols_i++) {
-//  expert_true << symbols_i.key();
 
-//  }
 
 QString result;
 int count1;
@@ -277,13 +275,15 @@ void MainWindow::loadTest(){
   int number = ui->comboBox->currentText().toInt();
   QString  str;
   QFile file("Образцы.txt");
+  QTextCodec *codec = QTextCodec::codecForName("CP1251");
   if(file.open(QIODevice::ReadOnly |QIODevice::Text))
     {
       int count = 1;
       while (!file.atEnd())
         {
           QByteArray line = file.readLine();
-          str = line.data();// <- прочитанная строка
+          QTextCodec *codec = QTextCodec::codecForName("CP1251");
+           str = codec->toUnicode(line);
           if(count == number)
             break;
           count++;
@@ -317,77 +317,45 @@ void MainWindow::loadTest(){
     }
 // отображение текста
   scen->clear();
-  double contStr_d = (double)contStr/100;
-  contStr_d = ceil(contStr_d);
-  int strCont = (int)contStr_d;
-  QString string[strCont];
-  QString stringText;
-  for(int i = 0; i < strCont; i++){
-    string[i] = str.mid(i * 100, 100);
-    string[i] = string[i] + "\n";
-    stringText = stringText + string[i];
-    }
- // scen->setSceneRect(0, -300, ui->graphicsView->width()-10, ui->graphicsView->height()-10);
-  ui->label_Text->setText(stringText);
-  QFont f;
-  f.setPointSize(15);
-  //scen->addText(stringText, f);
-   textItem = new QGraphicsTextItem;
-    textItem  = scen->addText(stringText, f);
-  //scen->setSceneRect(0, 0, ui->graphicsView->width(), ui->graphicsView->height());
- // ui->graphicsView->fitInView(scen->itemsBoundingRect(), Qt::KeepAspectRatio);
-
+  ui->textEdit->setText(str);
   ui->graphicsView->hide();
-  ui->label_Text->show();
+  ui->textEdit->show();
 }
 
 //отображение фрагмента текса на экране
 void MainWindow::textFragment(){
   ui->graphicsView->hide();
-   ui->label_Text->show();
+   ui->textEdit->show();
   int number = ui->comboBox->currentText().toInt();
   QString  str;
   QFile file("Образцы.txt");
-  if(file.open(QIODevice::ReadOnly |QIODevice::Text))
-    {
+  setlocale(LC_ALL,"");
+  QTextCodec *codec = QTextCodec::codecForName("CP1251");
+  if(file.open(QIODevice::ReadOnly |QIODevice::Text)){
       int count = 1;
       while (!file.atEnd())
         {
           QByteArray line = file.readLine();
-          str = line.data();// <- прочитанная строка
+          //str = line.data();// <- прочитанная строка
+           str = codec->toUnicode(line);
           if(count == number)
             break;
           count++;
         }
 
-    }
+  }
   else qDebug()<< "don't open file";
-  int contStr = str.count();
   scen->clear();
-  //дроблю строку на строки по 100 символов
-  double contStr_d = (double)contStr/100;
-  contStr_d = ceil(contStr_d);
-  int strCont = (int)contStr_d;
-  QString string[strCont];
-  QString stringText;
-  for(int i = 0; i < strCont; i++){
-    string[i] = str.mid(i * 100, 100);
-    string[i] = string[i] + "\n";
-    stringText = stringText + string[i];
-    }
-  //место отображения текста на экране
- // scen->setSceneRect(0, 0, ui->graphicsView->width(), ui->graphicsView->height());
   QFont f; //размер шрифта
-  f.setPointSize(15);
-  scen->addText(stringText, f);
-  ui->label_Text->setText(stringText);
-  //ui->graphicsView->fitInView(scen->itemsBoundingRect(), Qt::KeepAspectRatio);
+  f.setPointSize(20);
+  scen->addText(str, f);//stringtext
+  ui->textEdit->setText(str);
 }
 
 
 void MainWindow::openImage(){
   ui->graphicsView->show();
-   ui->label_Text->hide();
+   ui->textEdit->hide();
   QString fileName_DATA = QFileDialog::getOpenFileName(this, tr("Open File"),"", tr("Images(*.jpg *.tif)"));
     QFile file(fileName_DATA);
   if (!file.open(QIODevice::ReadOnly)) {
@@ -405,14 +373,14 @@ void MainWindow::openImage(){
   QFile file_txt(fileName);
   QString str;
 
-
-  QTextCodec *codec = QTextCodec::codecForName("windows-1251");
+setlocale(LC_ALL,"");
+QTextCodec *codec = QTextCodec::codecForName("CP1251");
 
   if(file_txt.open(QIODevice::ReadOnly |QIODevice::Text)){
       while (!file_txt.atEnd()) {
           QByteArray line = file_txt.readLine();
-          str = codec->toUnicode(line);
-          //str = line.data();// <- прочитанная строка
+       //str = line;
+       str = codec->toUnicode(line);
         }
     }
 
@@ -424,10 +392,7 @@ void MainWindow::openImage(){
   scen->clear();
   pix->load(fileName_DATA);
   scen->addPixmap(*pix);
-     //scen->setSceneRect(300, 170, ui->graphicsView->width(), ui->graphicsView->height());
   ui->graphicsView->fitInView(scen->itemsBoundingRect(), Qt::KeepAspectRatio);
-
- // ui->graphicsView->fitInView((QGraphicsItem*)pix , Qt::KeepAspectRatio );
 
   //Удаление всех элементов
   expert1.clear();
